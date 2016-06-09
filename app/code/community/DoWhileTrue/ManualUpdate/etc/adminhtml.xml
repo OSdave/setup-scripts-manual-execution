@@ -1,0 +1,37 @@
+<?xml version='1.0' ?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <tools>
+                                <children>
+                                    <dwt_update>
+                                        <title>Manual setup scripts execution</title>
+                                    </dwt_update>
+                                </children>
+                            </tools>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <system>
+            <children>
+                <tools>
+                    <children>
+                        <dwt_update>
+                            <title>Manual setup scripts execution</title>
+                            <action>adminhtml/update</action>
+                            <sort_order>1300</sort_order>
+                        </dwt_update>
+                    </children>
+                </tools>
+            </children>
+        </system>
+    </menu>
+</config>

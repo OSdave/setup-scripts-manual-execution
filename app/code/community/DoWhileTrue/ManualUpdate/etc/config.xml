@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DoWhileTrue_ManualUpdate>
+            <version>0.1.0</version>
+        </DoWhileTrue_ManualUpdate>
+    </modules>
+    <global>
+        <skip_process_modules_updates>1</skip_process_modules_updates>
+        <skip_process_modules_updates_ignore_dev_mode>1</skip_process_modules_updates_ignore_dev_mode>
+        <helpers>
+            <dwt_update>
+                <class>DoWhileTrue_ManualUpdate_Helper</class>
+            </dwt_update>
+        </helpers>
+        <blocks>
+            <dwt_update>
+                <class>DoWhileTrue_ManualUpdate_Block</class>
+            </dwt_update>
+        </blocks>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <DoWhileTrue_ManualUpdate after="Mage_Adminhtml">DoWhileTrue_ManualUpdate_Adminhtml</DoWhileTrue_ManualUpdate>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

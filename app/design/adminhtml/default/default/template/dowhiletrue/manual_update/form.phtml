@@ -1,0 +1,58 @@
+<?php /* @var $this DoWhileTrue_ManualUpdate_Block_Adminhtml_Update */ ?>
+<?php $pendingUpdates = $this->getPendingUpdates(); ?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3 class="icon-head head-tax-rate-importExport"><?php echo Mage::helper('dwt_update')->__('Manual setup scripts execution') ?></h3></td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <div>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('dwt_update')->__('Setups to execute') ?></h4>
+        </div>
+        <?php if (count($pendingUpdates)): ?>
+        <form id="dwt_manual_update" action="<?php echo $this->getUrl('*/*/execute') ?>" method="post">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <ul>
+                <?php foreach ($pendingUpdates as $module): ?>
+                <li>
+                    <fieldset>
+                        <p><?php echo Mage::helper('dwt_update')->__('Module: %s', $module['module_name']); ?></p>
+                        <p><?php echo Mage::helper('dwt_update')->__('Current version: %s', $module['installed_version']); ?></p>
+                        <p><?php echo Mage::helper('dwt_update')->__('Next version: %s', $module['module_version']); ?></p>
+                        <p>
+                            <?php echo Mage::helper('dwt_update')->__('Setup script files:'); ?>
+                            <ul>
+                                <?php foreach ($module['files'] as $file): ?>
+                                <li>
+                                    <?php echo $this->fileAsLink($file['fileName']); ?>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </p>
+                    </fieldset>
+                </li>
+                <?php endforeach; ?>
+                <div class="clear"></div>
+            </ul>
+            <fieldset>
+                <p>
+                    <label>
+                        <?php echo Mage::helper('dwt_update')->__('Do you want to put the store in maintenance while the scripts are running?') ?>
+                        <input type="checkbox" name="maintenance" />
+                    </label>
+                </p>
+            </fieldset>
+            <?php echo $this->getButtonHtml('Launch setup scripts', "this.form.submit()") ?>
+        </form>
+        <?php else: ?>
+        <fieldset>
+            <p>
+                <?php echo Mage::helper('dwt_update')->__('There is no setup to run') ?>
+            </p>
+        </fieldset>
+        <?php endif; ?>
+    </div>
+</div>
